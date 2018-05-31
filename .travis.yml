@@ -14,9 +14,7 @@ before_install:
   - sudo systemctl mask apt-daily.timer
   - sudo systemctl mask apt-daily-upgrade.service
   - sudo systemctl mask apt-daily-upgrade.timer
-  - ps aux
-  - sudo rm /var/lib/apt/lists/lock
-  - sudo rm /var/lib/dpkg/lock
+  - bash ./.travis/wait_for_apt.sh
   - sudo apt-get update -qq
   - sudo apt-get remove -y postgresql*
   - sudo apt-get upgrade -qq --allow-unauthenticated
